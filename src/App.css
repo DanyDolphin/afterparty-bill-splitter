@@ -1,38 +1,93 @@
-.App {
-  text-align: center;
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600;800&display=swap');
+
+/* Defaults */
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+}
+h1,h2,h3,h4,h5,h6 {
+  font-weight: 800
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Simple grid system */
+.row {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(12, 1fr);
+}
+.row > .col-1 { grid-column-end: span 1; }
+.row > .col-2 { grid-column-end: span 2; }
+.row > .col-3 { grid-column-end: span 3; }
+.row > .col-4 { grid-column-end: span 4; }
+.row > .col-5 { grid-column-end: span 5; }
+.row > .col-6 { grid-column-end: span 6; }
+.row > .col-7 { grid-column-end: span 7; }
+.row > .col-8 { grid-column-end: span 8; }
+.row > .col-9 { grid-column-end: span 9; }
+.row > .col-10 { grid-column-end: span 10; }
+.row > .col-11 { grid-column-end: span 11; }
+.row > .col-12 { grid-column-end: span 12; }
+
+/* Custom components */
+.card {
+  padding: 16px;
+  border: solid 1px black;
+  border-radius: 8px;
+  position: relative;
+}
+.card > .delete {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(-50%, -50%);
+}
+.chip {
+  display: inline-block;
+  background-color: gray;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.chip.selected {
+  background-color: blue;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+/* utilities */
+.main-container {
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
-
-.App-link {
-  color: #61dafb;
+.container {
+  padding: 16px 32px;
+  width: 100%;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.text-center {
+  text-align: center;
+}
+.flex {
+  display: flex;
+}
+.wrap {
+  flex-wrap: wrap;
+}
+.flex-column {
+  flex-direction: column;
+}
+.justify-center {
+  justify-content: center;
+}
+.align-center {
+  align-items: center;
+}
+.participant-section {
+  width: 100%;
+  max-width: 300px;
+  flex-basis: 300px;
+}
+.mt {
+  margin-top: 16px
 }
