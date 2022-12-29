@@ -37,7 +37,7 @@ const AppLayout = () => {
 
   const addParticipant = () => {
     const newParticipant: Participant = {
-      id: court[court.length - 1].id + 1,
+      id: court.length ? court[court.length - 1].id + 1 : 1,
       name: "",
       parts: [{ id: 1, concept: "", total: 0, excluded: [] }],
     };

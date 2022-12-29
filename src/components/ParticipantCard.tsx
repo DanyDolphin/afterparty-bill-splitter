@@ -15,7 +15,7 @@ const ParticipantCard = ({ participant }: ParticipantCardProperties) => {
 
   const addPart = () => {
     const newPart: Part = {
-      id: participant.parts[participant.parts.length - 1].id + 1,
+      id: participant.parts.length ? participant.parts[participant.parts.length - 1].id + 1 : 1,
       concept: "",
       total: 0,
       excluded: [],
