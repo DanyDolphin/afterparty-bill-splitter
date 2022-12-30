@@ -1,5 +1,5 @@
 // React
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { useAppContext } from "../context";
 import { Participant } from "../interfaces";
 
@@ -8,27 +8,33 @@ import { Participant } from "../interfaces";
 const Splitter = () => {
   const { court } = useAppContext();
 
-  const calc = (a: Participant, b: Participant) => {
-    return b.parts.reduce(
-      (acum, cur) =>
-        acum +
-        (cur.excluded.includes(a.id)
-          ? 0
-          : cur.total / (court.length - cur.excluded.length)),
-      0
-    )
-  }
+  const calc = useCallback(
+    (a: Participant, b: Participant) => {
+      return b.parts.reduce(
+        (acum, cur) =>
+          acum +
+          (cur.excluded.includes(a.id)
+            ? 0
+            : cur.total / (court.length - cur.excluded.length)),
+        0
+      );
+    },
+    [court]
+  );
 
   const debtTable = useMemo(
-    () => court.map(a => court.map(b => calc(a,b)))
-  , [court])
+    () => court.map((a) => court.map((b) => calc(a, b))),
+    [court, calc]
+  );
 
   return (
     <table>
       <tbody>
-        {court.map((a,i) =>
-          court.map((b,j) =>
-            a.id === b.id || debtTable[j][i] >= debtTable[i][j] || debtTable[i][j] === 0 ? null : (
+        {court.map((a, i) =>
+          court.map((b, j) =>
+            a.id === b.id ||
+            debtTable[j][i] >= debtTable[i][j] ||
+            debtTable[i][j] === 0 ? null : (
               <tr key={a.id + "-" + b.id}>
                 <td>{a.name}</td>
                 <td>=&gt;</td>
