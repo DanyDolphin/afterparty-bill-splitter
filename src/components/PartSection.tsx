@@ -45,8 +45,7 @@ const PartSection = ({ participant, part }: PartSectionProperties) => {
           }
         />
         <div>
-          {court.map((p) =>
-            participant.id === p.id ? null : (
+          {court.map((p) => (
               <span
                 key={p.id}
                 className={
